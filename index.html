@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Private Investigation</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ================= NAME ================= -->
+
+<div class="screen" id="nameScreen">
+
+    <div class="topSecret">TOP SECRET</div>
+
+    <div class="bigIcon">🔐</div>
+
+    <h1>PRIVATE ACCESS</h1>
+
+    <p>A private investigation has been prepared.</p>
+    <p>First, identify yourself.</p>
+
+    <input
+        type="text"
+        id="nameInput"
+        placeholder="Enter your name"
+    >
+
+    <button onclick="saveName()">
+        ENTER SYSTEM →
+    </button>
+
+    <p class="message" id="nameMessage"></p>
+
+</div>
+
+
+<!-- ================= FIRST BUG ================= -->
+
+<div class="screen hidden bugScreen" id="bugScreen">
+
+    <div class="errorIcon">⚠️</div>
+
+    <div class="errorText">
+        SYSTEM ERROR
+    </div>
+
+    <h2>UNAUTHORIZED PERSON DETECTED</h2>
+
+    <div class="terminalBox">
+
+        <p>Scanning...</p>
+
+        <p>
+            Identity:
+            <span id="bugName"></span>
+        </p>
+
+        <p>
+            Access:
+            <span class="red">SUSPICIOUS</span>
+        </p>
+
+        <p>Private database detected.</p>
+
+    </div>
+
+    <p>You probably shouldn't be here.</p>
+
+    <button onclick="continueAfterBug()">
+        CONTINUE ANYWAY
+    </button>
+
+</div>
+
+
+<!-- ================= WELCOME ================= -->
+
+<div class="screen hidden" id="welcomeScreen">
+
+    <div class="bigIcon">👀</div>
+
+    <h1 id="welcomeText">
+        Hello.
+    </h1>
+
+    <p>
+        Welcome to the Chooty Investigation.
+    </p>
+
+    <p>
+        Your name has already been recorded.
+    </p>
+
+    <div class="warningBox">
+
+        ⚠️ WARNING
+
+        <br><br>
+
+        There is no going back after this point.
+
+    </div>
+
+    <button onclick="startQuestions()">
+        ACCEPT THE RISK →
+    </button>
+
+</div>
+
+
+<!-- ================= QUESTIONS ================= -->
+
+<div class="screen hidden" id="questionsScreen">
+
+    <div class="level">
+        PRIVATE FILE 01
+    </div>
+
+    <h2>🕵️ PERSONAL FILE</h2>
+
+    <p>
+        Let's see how much you actually remember.
+    </p>
+
+
+    <div class="question">
+
+        <label>🎂 When is her birthday?</label>
+
+        <input
+            type="date"
+            id="birthdayInput"
+        >
+
+    </div>
+
+
+    <div class="question">
+
+        <label>🎨 What's her favourite colour?</label>
+
+        <input
+            type="text"
+            id="colourInput"
+            placeholder="Your answer"
+        >
+
+    </div>
+
+
+    <div class="question">
+
+        <label>💜 What nickname do you call her?</label>
+
+        <input
+            type="text"
+            id="nicknameInput"
+            placeholder="Your answer"
+        >
+
+    </div>
+
+
+    <div class="question">
+
+        <label>
+            😭 Which phrase does she mostly use
+            when she's stressed?
+        </label>
+
+        <input
+            type="text"
+            id="stressInput"
+            placeholder="Your answer"
+        >
+
+    </div>
+
+
+    <button onclick="submitQuestions()">
+        SUBMIT EVIDENCE →
+    </button>
+
+</div>
+
+
+<!-- ================= QUESTION BUG ================= -->
+
+<div class="screen hidden bugScreen" id="questionBugScreen">
+
+    <div class="errorIcon">🚨</div>
+
+    <div class="errorText">
+        DATA ANALYSIS
+    </div>
+
+    <h1 id="questionBugTitle">
+        ANALYZING...
+    </h1>
+
+    <p id="questionBugText">
+        Checking your answers...
+    </p>
+
+    <div class="loadingDots">
+        ● ● ●
+    </div>
+
+</div>
+
+
+<!-- ================= MEMORY ================= -->
+
+<div class="screen hidden" id="memoryScreen">
+
+    <div class="level">
+        MEMORY TEST
+    </div>
+
+    <h2>🧠 MEMORY OR LUCK?</h2>
+
+    <p id="memoryInstruction">
+        You have 5 seconds.
+        Memorize everything.
+    </p>
+
+
+    <div id="memoryFacts">
+
+        <p>01 — Birthday: 31 January</p>
+
+        <p>02 — Favourite colour: Purple</p>
+
+        <p>03 — Nickname: Chooty</p>
+
+        <p>04 — Stress phrase: epa wenawa</p>
+
+        <p>05 — Subject: Chooty</p>
+
+    </div>
+
+
+    <button
+        id="memoryStartButton"
+        onclick="startMemory()">
+
+        I'M READY
+
+    </button>
+
+
+    <div id="memoryQuestion" class="hidden">
+
+        <p>Which one was NUMBER 04?</p>
+
+        <button onclick="memoryAnswer(1)">
+            Birthday
+        </button>
+
+        <button onclick="memoryAnswer(2)">
+            Favourite colour
+        </button>
+
+        <button onclick="memoryAnswer(3)">
+            Nickname
+        </button>
+
+        <button onclick="memoryAnswer(4)">
+            Stress phrase
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================= RED BUTTON ================= -->
+
+<div class="screen hidden" id="redButtonScreen">
+
+    <div class="level">
+        SYSTEM TEST
+    </div>
+
+    <h2>🚨 IMPORTANT</h2>
+
+    <p>Whatever you do...</p>
+
+    <h1>
+        DO NOT PRESS THE RED BUTTON.
+    </h1>
+
+    <button
+        class="redButton"
+        onclick="pressRedButton()">
+
+        🔴 DO NOT PRESS
+
+    </button>
+
+    <p id="redMessage" class="message"></p>
+
+</div>
+
+
+<!-- ================= LIE ================= -->
+
+<div class="screen hidden" id="lieScreen">
+
+    <div class="level">
+        INVESTIGATION LEVEL 03
+    </div>
+
+    <h2>🕵️ SPOT THE LIE</h2>
+
+    <p>
+        One of these statements is suspicious.
+    </p>
+
+
+    <div class="lieBox">
+
+        <button onclick="lieAnswer(1)">
+            💜 She likes Purple.
+        </button>
+
+        <button onclick="lieAnswer(2)">
+            🎂 Her birthday is January 31.
+        </button>
+
+        <button onclick="lieAnswer(3)">
+            😇 She is never annoying.
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- ================= GIRLFRIEND ================= -->
+
+<div class="screen hidden" id="girlfriendScreen">
+
+    <div class="level">
+        CLASSIFIED QUESTION
+    </div>
+
+    <h2>🚨 ONE SERIOUS QUESTION</h2>
+
+    <p>
+        Do you have a girlfriend?
+    </p>
+
+    <button onclick="girlAnswer('yes')">
+        YES
+    </button>
+
+    <button onclick="girlAnswer('no')">
+        NO
+    </button>
+
+</div>
+
+
+<!-- ================= YES ================= -->
+
+<div class="screen hidden girlfriendBug yesBug" id="yesBugScreen">
+
+    <div class="hugeWarning">🚨</div>
+
+    <div class="glitchText">
+        OHHHHHHHH...
+    </div>
+
+    <h1>
+        WHO IS THAT?!
+    </h1>
+
+    <div class="bigQuestion">
+        👀
+    </div>
+
+    <p>
+        Unexpected information detected.
+    </p>
+
+    <div class="terminalBox">
+
+        <p>GIRLFRIEND STATUS:</p>
+
+        <p class="red">
+            DETECTED.
+        </p>
+
+        <p>
+            Adding this information
+            to the investigation...
+        </p>
+
+    </div>
+
+    <button onclick="continueFromGirlBug()">
+        MOVE ON 😭
+    </button>
+
+</div>
+
+
+<!-- ================= NO ================= -->
+
+<div class="screen hidden girlfriendBug noBug" id="noBugScreen">
+
+    <div class="hugeWarning">🔎</div>
+
+    <div class="glitchText">
+        SCAN COMPLETE
+    </div>
+
+    <h1>
+        NO GIRLFRIEND DETECTED.
+    </h1>
+
+    <div class="bigQuestion">
+        👀
+    </div>
+
+    <p>
+        Interesting...
+    </p>
+
+    <div class="terminalBox">
+
+        <p>RESULT:</p>
+
+        <p class="green">
+            NOTHING FOUND.
+        </p>
+
+        <p>
+            Investigation may continue.
+        </p>
+
+    </div>
+
+    <button onclick="continueFromGirlBug()">
+        CONTINUE 😌
+    </button>
+
+</div>
+
+
+<!-- ================= FINAL BOSS ================= -->
+
+<div class="screen hidden" id="bossScreen">
+
+    <div class="level">
+        FINAL BOSS
+    </div>
+
+    <div class="bigIcon">
+        👹
+    </div>
+
+    <h2>FINAL QUESTION</h2>
+
+    <p>
+        Why did you complete this entire investigation?
+    </p>
+
+    <button onclick="bossAnswer(1)">
+        I WAS CURIOUS
+    </button>
+
+    <button onclick="bossAnswer(2)">
+        I HAD NOTHING BETTER TO DO
+    </button>
+
+    <button onclick="bossAnswer(3)">
+        I WANTED TO SEE WHAT HAPPENS
+    </button>
+
+    <button onclick="bossAnswer(4)">
+        I DON'T KNOW 😂
+    </button>
+
+</div>
+
+
+<!-- ================= LOADING ================= -->
+
+<div class="screen hidden" id="loadingScreen">
+
+    <div class="bigIcon spinning">
+        ⚙️
+    </div>
+
+    <h2>
+        GENERATING FINAL REPORT...
+    </h2>
+
+    <div class="loadingBar">
+
+        <div id="progress"></div>
+
+    </div>
+
+    <p id="loadingText">
+        Collecting evidence...
+    </p>
+
+</div>
+
+
+<!-- ================= GREEN GLITCH ================= -->
+
+<div class="screen hidden greenGlitch" id="greenGlitchScreen">
+
+    <div class="greenNoise"></div>
+
+    <div class="glitchTerminal">
+
+        <p>> SYSTEM INTERRUPTED</p>
+
+        <p>> CONNECTION DETECTED</p>
+
+        <p>> USER: <span id="glitchName"></span></p>
+
+        <p>> SESSION: ACTIVE</p>
+
+        <p>> SCANNING MEMORY...</p>
+
+        <p>> SCANNING FILES...</p>
+
+        <p>> SCANNING BEHAVIOUR...</p>
+
+        <p>> ████████████████████ 100%</p>
+
+        <br>
+
+        <p class="glitchRed">
+            WARNING: UNKNOWN FILE DETECTED
+        </p>
+
+        <p>
+            /CHOOTY/FINAL_MESSAGE.exe
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- ================= ACCESS ================= -->
+
+<div class="screen hidden accessScreen" id="accessScreen">
+
+    <div class="accessText">
+        ACCESS
+    </div>
+
+    <div class="grantedText">
+        GRANTED
+    </div>
+
+    <p>
+        PRIVATE FILE OPENED
+    </p>
+
+</div>
+
+
+<!-- ================= EMOTIONAL MESSAGE ================= -->
+
+<div class="screen hidden emotionalScreen" id="emotionalScreen">
+
+    <div class="topSecret">
+        FINAL FILE
+    </div>
+
+    <div class="bigIcon">
+        🤍
+    </div>
+
+    <h1>
+        Hey, <span id="emotionalName"></span>.
+    </h1>
+
+    <div class="emotionalText">
+
+        <p>
+            If you actually made it all the way here...
+        </p>
+
+        <p>
+            Thank you for your time.
+        </p>
+
+        <p>
+           IK you wondered
+            what was wrong with me. 😂
+        </p>
+
+        <p>
+            But behind all of that,
+            there was actually one simple reason
+            I made this.
+        </p>
+
+        <h2>
+            I MISS YOU.
+        </h2>
+
+        <p>
+            
+            Maybe I don't always know
+            how to say everything I feel.
+        </p>
+
+        <p>
+            But sometimes I just miss
+            the little things.
+        </p>
+
+        <p>
+            The conversations.
+            The random moments.
+            The feeling of having someone
+            who knows you.
+        </p>
+
+        <p>
+            So I made you this ridiculous
+            little game instead of just
+            saying it normally.
+        </p>
+
+        <p>
+            And if you spent all this time
+            clicking through every screen
+            just to reach this message...
+        </p>
+
+        <p>
+            <strong>
+                Thank you for your time.
+            </strong>
+        </p>
+
+        <p>
+            It actually means more
+            than you probably think.
+        </p>
+
+        <h3>
+            I hope this made you smile. 🤍
+        </h3>
+
+    </div>
+
+    <p class="signature">
+        — Chooty
+    </p>
+
+</div>
+
+
+<!-- ================= LAST GLITCH ================= -->
+
+<div class="screen hidden lastGlitch" id="lastGlitchScreen">
+
+    <div class="lastGlitchText">
+
+        <div>
+            THANK YOU FOR YOUR TIME.
+        </div>
+
+        <div>
+            SESSION COMPLETE.
+        </div>
+
+        <br>
+
+        <div>
+            ...
+        </div>
+
+        <div class="waitText">
+            WAIT.
+        </div>
+
+        <div>
+            ONE LAST THING.
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= LAST MESSAGE ================= -->
+
+<div class="screen hidden lastMessageScreen" id="lastMessageScreen">
+
+    <div class="bigIcon">
+        🤍
+    </div>
+
+    <h1>
+        I MISSEED YOu BUNNY.
+    </h1>
+
+    <p>
+        That's it.
+    </p>
+
+    <p>
+        No more questions.
+        No more tests.
+        No more fake errors.
+    </p>
+
+    <p>
+        Just wanted you to know.
+    </p>
+
+    <div class="finalLine">
+        Thank you for staying until the end.
+    </div>
+
+</div>
+
+
+<!-- ================= SHUTDOWN ================= -->
+
+<div class="screen hidden shutdownScreen" id="shutdownScreen">
+
+    <div class="shutdownText">
+
+        <p>ENDING SESSION...</p>
+
+        <p>BYE, <span id="shutdownName"></span>.</p>
+
+        <p>█</p>
+
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
